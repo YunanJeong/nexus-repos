@@ -69,3 +69,10 @@ nexus 구축 과정 정리
         - Repository 설정에서 이걸 활성화 해줘야 docker pull 할 때 캐시가 프록시 레포지토리에 남는다.
         - [1](https://community.sonatype.com/t/caching-images-on-docker-proxy-repository/3496/4)
         - [2](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry/foreign-layers)
+
+
+
+# 활용
+- 도커에서 로그인
+
+- K3s에서 로그인
