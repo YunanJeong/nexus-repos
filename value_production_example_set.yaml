@@ -35,6 +35,7 @@ nexus:
         -XX:+UnlockExperimentalVMOptions
         -XX:+UseCGroupMemoryLimitForHeap
         -Djava.util.prefs.userRoot=/nexus-data/javaprefs
+        -XX:ActiveProcessorCount=2
     - name: NEXUS_SECURITY_RANDOMPASSWORD
       value: "true"
   properties:
