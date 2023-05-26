@@ -158,7 +158,7 @@ nexus 구축 과정, 설명 및 사용법 정리
     ```
 2. pull
     ```
-    e.g.
+    # e.g.
     sudo k3s crictl image pull docker-wai/hello-world
     ```
 3. 확인
