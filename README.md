@@ -95,7 +95,7 @@ nexus 구축 과정, 설명 및 사용법 정리
 
 # 활용
 ## docker pull/push 하기
-- 로그인을 위한 사전 작업
+0. 로그인을 위한 사전 작업
     - https (외부 배포시)
         - 도커 V2 (API Version 1.10 이상)의 도커 런타임들은 https 저장소만 쓰길 강제한다.
         - 인증서를 받아서 nexus에 https를 적용하는 것이 바람직하다.
@@ -111,14 +111,14 @@ nexus 구축 과정, 설명 및 사용법 정리
             ```
             sudo systemctl restart docker
             ```
-- `docker login {저장소 URL}`
+1. `docker login {저장소 URL}`
     ```
     # e.g.
     docker login docker.wai
     ```
     - 이 때 저장소 URL은 nexus 웹페이지 설정에 있는 subpath URL이 아니고, ingress설정 및 hosts 파일에 기입해놓은 URL을 적어야 한다.
 
-- `docker pull {저장소 URL}/{이미지}`
+2. `docker pull {저장소 URL}/{이미지}`
     ```
     # e.g.
     docker pull docker.wai/hello-world:latest
@@ -127,7 +127,7 @@ nexus 구축 과정, 설명 및 사용법 정리
     - **저장소 URL을 쓰지 않으면 docker hub만 참조하고, nexus 프록시 서버에 캐시 이미지가 남지 않는다.**
     
 
-- `docker push {저장소 URL}/{이미지}`
+3. `docker push {저장소 URL}/{이미지}`
     ```
     # e.g.
     docker tag hello-world docker.wai/hello-world
@@ -137,3 +137,29 @@ nexus 구축 과정, 설명 및 사용법 정리
 
 ## K3s에서 사용할 이미지를 nexus 저장소로부터 pull하기
 
+- [K3s에서 private registry 사용법(공식)](https://docs.k3s.io/installation/private-registry)
+
+0. `/ete/rancher/k3s/registries.yaml` 파일 추가
+    ```
+    # /etc/rancher/k3s/registries.yaml
+    mirrors:
+    docker.wai:
+        endpoint:
+        - "http://docker.wai"
+    configs:
+    "docker.wai":
+        auth:
+        username: xxxxxx # this is the registry username
+        password: xxxxxx # this is the registry password
+    ```
+
+
+1. pull
+    ```
+    e.g.
+    sudo k3s crictl image pull docker-wai/hello-world
+    ```
+2. 확인
+    ```
+    sudo k3s crictl images
+    ```
