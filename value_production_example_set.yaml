@@ -25,13 +25,14 @@ nexus:
     # https://help.sonatype.com/repomanager3/product-information/system-requirements
     - name: INSTALL4J_ADD_VM_PARAMS
       # 램 12기준으로 권장 설정, ActiveProcessorCount는 pod에서 코어 개수 설정
+      # -XX:ActiveProcessorCount=4
       value: |-
         -Xms4G -Xmx4G
         -XX:MaxDirectMemorySize=4014M
         -XX:+UnlockExperimentalVMOptions
         -XX:+UseCGroupMemoryLimitForHeap
         -Djava.util.prefs.userRoot=/nexus-data/javaprefs
-        -XX:ActiveProcessorCount=4
+        
     - name: NEXUS_SECURITY_RANDOMPASSWORD
       value: "true"
   properties:
@@ -46,10 +47,10 @@ nexus:
   # minimum recommended memory settings for a small, person instance from
   # https://help.sonatype.com/repomanager3/product-information/system-requirements
     requests:
-       #cpu: 4   
+       # cpu: 4000m  # 코어수는 밀리코어(1/1000) 단위 설정하는 것이다.
        memory: 8Gi
     limits:
-       #cpu: 4
+       cpu: 4000
        memory: 12Gi
 
   # The ports should only be changed if the nexus image uses a different port
