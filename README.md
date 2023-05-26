@@ -49,9 +49,12 @@ nexus 구축 과정 정리
         - docker registry 접근을 위한 K8s ingress 설정
     - ingress 하위항목
         - nexus 서버 접근을 위한 K8s ingress 설정
-    - resources 하위항목
-        - 컴퓨팅 리소스 점유율 조절
-
+    - 시스템 요구사항
+        - [공식](https://help.sonatype.com/repomanager3/product-information/sonatype-nexus-repository-system-requirements)
+        - nexus.envs에서 자바 힙사이즈 조절
+        - nexus.resources에서 컴퓨팅 리소스 조절
+            - 단, Pod가 cpu 부족 로그를 찍으며 Pending 상태에 머무를 때는 이 제한을 해제한다.
+    
 5. nexus 실행
     ```
     # 실행
@@ -60,7 +63,17 @@ nexus 구축 과정 정리
     # 배포 확인
     helm list
     ```
-6. 브라우저로 nexus 접속 후 설정
+
+6. 접속 준비
+    - 다음과 같이 hosts 파일에 추가
+        ```
+        X.X.X.X nexus.wai
+        X.X.X.X docker.wai
+        ```
+    - 리눅스의 경우: `/etc/hosts`
+    - 윈도우의 경우: `C:\Windows\System32\drivers\etc\hosts`
+    - WSL의 경우 윈도우
+7. 브라우저로 nexus 접속 후 설정
     - 여기서부터는 블로그 자료가 매우 많다.
 
     - https://mtijhof.wordpress.com/2018/07/23/using-nexus-oss-as-a-proxy-cache-for-docker-images/
