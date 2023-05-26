@@ -101,12 +101,12 @@ nexus 구축 과정, 설명 및 사용법 정리
         - 인증서를 받아서 nexus에 https를 적용하는 것이 바람직하다.
     - http (내부망 간편 용도)
         - `/etc/docker/daemon.json`에 다음과 같이 보안 예외 URL을 등록해준다. 파일 없으면 생성.
-        ```
-        {
-            "insecure-registries": ["docker.wai"],
-            "registry-mirrors": ["http://docker.wai"]
-        }
-        ```
+            ```
+            {
+                "insecure-registries": ["docker.wai"],
+                "registry-mirrors": ["http://docker.wai"]
+            }
+            ```
         - 도커 재시작
             ```
             sudo systemctl restart docker
@@ -143,14 +143,14 @@ nexus 구축 과정, 설명 및 사용법 정리
     ```
     # /etc/rancher/k3s/registries.yaml
     mirrors:
-    docker.wai:
+      docker.wai:
         endpoint:
-        - "http://docker.wai"
+          - "http://docker.wai"
     configs:
-    "docker.wai":
+      "docker.wai":
         auth:
-        username: xxxxxx # this is the registry username
-        password: xxxxxx # this is the registry password
+          username: xxxxxx # this is the registry username
+          password: xxxxxx # this is the registry password
     ```
 
 
