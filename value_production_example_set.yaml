@@ -24,15 +24,17 @@ nexus:
     # minimum recommended memory settings for a small, person instance from
     # https://help.sonatype.com/repomanager3/product-information/system-requirements
     - name: INSTALL4J_ADD_VM_PARAMS
-      # 램 12기준으로 권장 설정, ActiveProcessorCount는 pod에서 코어 개수 설정
+      # 램 12기준으로 권장 설정,
       # -XX:ActiveProcessorCount=4
+        # 아래 value에 추가시 Pod 내부에서 사용할 코어 개수 지정가능
+        # Pod 내부의 JavaVM이 호스트의 프로세스를 올바르게 인식하도록 해준다.
       value: |-
         -Xms4G -Xmx4G
         -XX:MaxDirectMemorySize=4014M
         -XX:+UnlockExperimentalVMOptions
         -XX:+UseCGroupMemoryLimitForHeap
         -Djava.util.prefs.userRoot=/nexus-data/javaprefs
-        
+        -XX:ActiveProcessorCount=4
     - name: NEXUS_SECURITY_RANDOMPASSWORD
       value: "true"
   properties:
@@ -46,8 +48,10 @@ nexus:
   resources:
   # minimum recommended memory settings for a small, person instance from
   # https://help.sonatype.com/repomanager3/product-information/system-requirements
+    # K8s 코어수는 밀리코어(1/1000) 단위로 설정한다.
+    # 4코어 서버에서 4(4000m)으로 설정시 실제로는 그만큼의 밀리코어가 없기 때문에 Pod 실행에 실패한다.
     requests:
-       # cpu: 4000m  # 코어수는 밀리코어(1/1000) 단위 설정하는 것이다.
+       cpu: 2000m
        memory: 8Gi
     limits:
        cpu: 3000m
