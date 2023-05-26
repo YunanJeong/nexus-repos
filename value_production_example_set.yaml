@@ -24,10 +24,12 @@ nexus:
     # minimum recommended memory settings for a small, person instance from
     # https://help.sonatype.com/repomanager3/product-information/system-requirements
     - name: INSTALL4J_ADD_VM_PARAMS
-      # 램 12기준으로 권장 설정,
+      # 램 12기준으로 권장 설정
       # -XX:ActiveProcessorCount=4
-        # 아래 value에 추가시 Pod 내부에서 사용할 코어 개수 지정가능
-        # Pod 내부의 JavaVM이 호스트의 프로세스 개수를 명시적으로 인지하도록 해준다.
+        # Pod 내부의 JavaVM이 인식하는 프로세스 개수를 명시적으로 지정한다
+        # 가끔 호스트의 프로세스 개수를 인식하지 못하는 경우가 있을 때 아래 value에 추가해서 사용해주면된다.
+        # K8s의 경우 resources.limits에 지정한 코어 수가 인식해야할 호스트 프로세스 개수라고 볼 수 있다.
+          # e.g.) 여기서 4개로 지정해도, 3코어 limit이 걸려있으면 인식만 4개로 하는 것 같음    
         # Pod 내부의 코어 개수 확인: $ grep -c processor /proc/cpuinfo
       value: |-
         -Xms4G -Xmx4G
@@ -35,7 +37,6 @@ nexus:
         -XX:+UnlockExperimentalVMOptions
         -XX:+UseCGroupMemoryLimitForHeap
         -Djava.util.prefs.userRoot=/nexus-data/javaprefs
-        -XX:ActiveProcessorCount=2
     - name: NEXUS_SECURITY_RANDOMPASSWORD
       value: "true"
   properties:
@@ -55,7 +56,7 @@ nexus:
        cpu: 2000m
        memory: 8Gi
     limits:
-       cpu: 3000m
+       cpu: 3500m
        memory: 12Gi
 
   # The ports should only be changed if the nexus image uses a different port
