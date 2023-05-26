@@ -50,7 +50,7 @@ nexus:
        # cpu: 4000m  # 코어수는 밀리코어(1/1000) 단위 설정하는 것이다.
        memory: 8Gi
     limits:
-       cpu: 4000
+       cpu: 4000m
        memory: 12Gi
 
   # The ports should only be changed if the nexus image uses a different port
