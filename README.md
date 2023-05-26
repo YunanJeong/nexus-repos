@@ -152,14 +152,16 @@ nexus 구축 과정, 설명 및 사용법 정리
           username: xxxxxx # this is the registry username
           password: xxxxxx # this is the registry password
     ```
-
-
-1. pull
+1. k3s 재시작
+    ```
+    sudo systemctl restart k3s
+    ```
+2. pull
     ```
     e.g.
     sudo k3s crictl image pull docker-wai/hello-world
     ```
-2. 확인
+3. 확인
     ```
     sudo k3s crictl images
     ```
