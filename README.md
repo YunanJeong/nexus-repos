@@ -89,6 +89,28 @@ nexus 구축 과정 정리
 
 
 # 활용
-- 도커에서 로그인
+## nexus 저장소에서 docker pull 하기
+- 도커 V2 (API Version 1.10 이상)부터 항상 https의 저장소만 쓰게 되어 있다.
+- nexus 레포지토리도 외부 배포한다면, 인증서를 받아서 https로 적용하는 것이 가장 바람직하다.
+- 그러나 내부망에서 간편하게 쓸 용도라면 다른 방법도 있다.
+    - nexus는 http 기준으로 설정해놓는다.
+    - 도커 설정에서 해당 nexus 서버는 보안 예외 사항으로 적용할 수 있다.
+    - `/etc/docker/daemon.json`으로 다음 내용 파일을 생성한다.
+    ```
+    {
+        "insecure-registries": ["docker.wai"],
+        "registry-mirrors": ["http://docker.wai"]
+    }
+    ```
+    - 도커 재시작
+        ```
+        sudo systemctl restart docker
+        ```
+- 로그인
+    - `docker login {저장소 URL}`
+    - 이 때 저장소 URL은 nexus 웹페이지 설정에 있는 URL이 아니고, ingress설정 및 hosts 파일에 기입해놓은 URL을 적어야 한다.
+        - e.g. docker login docker.wai
+
+
 
 - K3s에서 로그인
