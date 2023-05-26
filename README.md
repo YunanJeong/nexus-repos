@@ -51,6 +51,7 @@ nexus 구축 과정 정리
         - nexus 서버 접근을 위한 K8s ingress 설정을 하는 부분
     - 시스템 요구사항
         - [공식](https://help.sonatype.com/repomanager3/product-information/sonatype-nexus-repository-system-requirements)
+        - 보통 헬름차트 기본값은 테스트실행용 최소한도로 설정되어 있다.
         - nexus.envs에서 자바 힙사이즈 조절
         - nexus.resources에서 컴퓨팅 리소스 조절
             - 단, Pod가 cpu 부족 로그를 찍으며 Pending 상태에 머무를 때는 이 제한을 해제한다.

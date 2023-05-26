@@ -24,9 +24,10 @@ nexus:
     # minimum recommended memory settings for a small, person instance from
     # https://help.sonatype.com/repomanager3/product-information/system-requirements
     - name: INSTALL4J_ADD_VM_PARAMS
-      value: |-C:\Windows\System32\drivers\etc
-        -Xms2703M -Xmx7G
-        -XX:MaxDirectMemorySize=2703M
+      # 램 12기준으로 권장 설정
+      value: |-
+        -Xms4G -Xmx4G
+        -XX:MaxDirectMemorySize=4014M
         -XX:+UnlockExperimentalVMOptions
         -XX:+UseCGroupMemoryLimitForHeap
         -Djava.util.prefs.userRoot=/nexus-data/javaprefs
@@ -43,12 +44,12 @@ nexus:
   resources:
   # minimum recommended memory settings for a small, person instance from
   # https://help.sonatype.com/repomanager3/product-information/system-requirements
-    #requests:
-       #cpu: 4
-       #memory: 8Gi
+    requests:
+       cpu: 4   # 이거 안쓰면 1코어만 쓴다.
+       memory: 8Gi
     limits:
        cpu: 4
-       memory: 14Gi
+       memory: 12Gi
 
   # The ports should only be changed if the nexus image uses a different port
   nexusPort: 8081
@@ -75,7 +76,7 @@ nexus:
     path: /
   # hostAliases allows the modification of the hosts file inside a container
   hostAliases: [] 
-    #- ip: "3.39.39.108"
+    #- ip: "x.x.x.x"
     # hostnames:
     #   - "nexus.wai"
     #   - "docker.wai"
@@ -154,7 +155,7 @@ persistence:
   # annotations:
   #  "helm.sh/resource-policy": keep
   # storageClass: "-"
-  storageSize: 8Gi
+  storageSize: 150Gi
   # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
   # pdName: nexus-data-disk
   # fsType: ext4
