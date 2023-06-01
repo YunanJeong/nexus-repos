@@ -165,3 +165,11 @@ nexus 구축 과정, 설명 및 사용법 정리
     ```
     sudo k3s crictl images
     ```
+
+4. 쿠버네티스 노드(k3s-agent)만 실행되는 호스트인 경우 설정방법
+    - 위 과정과 동일
+    - `/ete/rancher/k3s/registries.yaml` 파일 추가 (경로가 없으면 똑같이 생성.)
+    - 서비스 재실행
+    ```
+    sudo systemctl restart k3s-agent
+    ```
