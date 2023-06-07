@@ -135,7 +135,35 @@ nexus 구축 과정, 설명 및 사용법 정리
     ```
     - **push 할때는 tag 명령어로 이미지 이름(REPOSITORY) 앞에 저장소 URL을 붙여준 후 진행한다.**
 
-## K3s에서 사용할 이미지를 nexus 저장소로부터 pull하기
+## Minikube에서 저장소 사용법
+0. container runtime으로 docker를 사용하는 것으로 가정
+1. 위 docker 설정을 완료
+2. 기존 minikube 클러스터 삭제
+    ```
+    minikube delete
+    ```
+3. minikube start --insecure-registry="{저장소URL:PORT}"
+    ```
+    # e.g.
+    minikube start --insecure-registry="docker.wai"
+    ```
+4. pull
+    ```
+    minikube image pull docker.wai/hello-world:latest
+    ```
+5. 확인
+    ```
+    minikube image ls
+    ```
+6. 참고사항
+    - 반드시 기존 클러스터 지우고 새로 시작해야 함
+    - minikube addons의 registry는 minikube자체에서 사설 registry를 구축하는 용도라서, nexus 저장소 연결하는 것과는 다름
+    - docker.wai/hello-world:latest가 로컬에 저장되어있을 때, 다음을 실행하면 docker.io/hello-world:latest로 교체됨
+        ```
+        minikube image pull hello-world:latest
+        ``` 
+
+## K3s에서 저장소 사용법
 
 - [K3s에서 private registry 사용법(공식)](https://docs.k3s.io/installation/private-registry)
 
