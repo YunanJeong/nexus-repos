@@ -124,7 +124,12 @@ nexus 구축 과정, 설명 및 사용법 정리
     docker pull docker.wai/hello-world:latest
     ```
     - nexus에 해당 이미지가 있으면 그것을 pull하고, 아니면 nexus 저장소에서 바라보는 docker hub로부터 pull하게 된다.
-    - **저장소 URL을 쓰지 않으면 docker hub만 참조하고, nexus 프록시 서버에 캐시 이미지가 남지 않는다.**
+    - **저장소 URL을 쓰지 않는 경우 동작방식**
+        ```
+        docker pull hello-world:latest
+        ```
+        - **docker cli에서 도커허브와 사설 저장소 모두 로그인된 상태이면, 저장소 URL이 없을 때 docker hub를 default로 쓴다. 따라서 사설 저장소에 캐시 이미지가 남지 않는다.**
+        - 사설 저장소만 로그인된 상태이면, 사설 저장소에 캐시 이미지가 남으며, 로컬 이미지에는 docker.io접두어가 붙는다.
     
 
 3. `docker push {저장소 URL}/{이미지}`
