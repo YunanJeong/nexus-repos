@@ -139,6 +139,9 @@ nexus 구축 과정, 설명 및 사용법 정리
     docker push docker.wai/hello-world
     ```
     - **push 할때는 tag 명령어로 이미지 이름(REPOSITORY) 앞에 저장소 URL을 붙여준 후 진행한다.**
+    - [Proxy Registry엔 Push 불가](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry/pushing-images)
+    - [Group Registry에 Push 기능은 Nexus Pro버전에서 허용](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry/pushing-images-to-a-group-repository)
+    - 무료 버전에서 사설 레지스트리와 프록시 레지스트리를 하나의 group port로 운용할 수는 없다. Hosted Registry에 개별 포트를 열어서 Push 해야한다.
 
 ## Minikube에서 저장소 사용법
 0. container runtime으로 docker를 사용하는 것으로 가정
