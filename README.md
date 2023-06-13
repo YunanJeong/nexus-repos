@@ -172,7 +172,7 @@ nexus 구축 과정, 설명 및 사용법 정리
     - 반드시 기존 클러스터 지우고 새로 시작해야 함
     - minikube addons의 registry는 minikube자체에서 사설 registry를 구축하는 용도라서, nexus 저장소 연결하는 것과는 다름
     - minikube image 커맨드로 push, tag 서브 커맨드를 사용하면 의도치 않게 작동한다.
-    - minikube 내 이미지 관리는 가급적 `minikube docker-env` 또는 `minikube ssh`를 통해서 minikube 내에서 실행되는 docker-cli를 통해 관리하도록 하자 
+        - minikube 내 이미지 관리는 `minikube ssh` 후 **minikube 컨트롤플레인 내부의 docker-cli**를 사용하는 것이 좋음. 해당 docker 정보는 `minikube docker-env`를 통해서도 확인가능
 
 ## K3s에서 저장소 사용법
 
