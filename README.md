@@ -128,8 +128,8 @@ nexus 구축 과정, 설명 및 사용법 정리
         ```
         docker pull hello-world:latest
         ```
-        - **docker cli에서 도커허브와 사설 저장소 모두 로그인된 상태이면, 저장소 URL이 없을 때 docker hub를 default로 쓴다. 따라서 사설 저장소에 캐시 이미지가 남지 않는다.**
-        - 사설 저장소만 로그인된 상태이면, 사설 저장소에 캐시 이미지가 남으며, 로컬 이미지에는 docker.io접두어가 붙는다.
+        - **docker cli에서 도커허브와 Proxy Repo 모두 로그인된 상태이면, 저장소 URL이 없을 때 docker hub를 default로 쓴다. 따라서 Proxy Repo에 캐시 이미지가 남지 않는다.**
+        - Proxy Repo만 로그인된 상태이면, Proxy Repo에 캐시 이미지가 남으며, 로컬 이미지에는 docker.io접두어가 붙는다.
     
 
 3. `docker push {저장소 URL}/{이미지}`
@@ -139,9 +139,10 @@ nexus 구축 과정, 설명 및 사용법 정리
     docker push docker.wai/hello-world
     ```
     - **push 할때는 tag 명령어로 이미지 이름(REPOSITORY) 앞에 저장소 URL을 붙여준 후 진행한다.**
-    - [Proxy Registry엔 Push 불가](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry/pushing-images)
-    - [Group Registry에 Push 기능은 Nexus Pro버전에서 허용](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry/pushing-images-to-a-group-repository)
-    - 무료 버전에서 사설 레지스트리와 프록시 레지스트리를 하나의 group port로 운용할 수는 없다. Hosted Registry에 개별 포트를 열어서 Push 해야한다.
+    - [Proxy Repo엔 Push 불가](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry/pushing-images)
+    - [Group Repo에 Push 기능은 Nexus Pro버전에서 허용](https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/docker-registry/pushing-images-to-a-group-repository)
+    - 무료 버전에서 사설 레지스트리와 프록시 레지스트리를 하나의 group port로 운용할 수는 없다. Hosted Repo에 개별 포트를 열어서 Push 해야한다. 
+    - Hosted Repo에 Push한 이미지를 Group Repo에서 Pull하는 것은 가능
 
 ## Minikube에서 저장소 사용법
 0. container runtime으로 docker를 사용하는 것으로 가정
@@ -154,7 +155,11 @@ nexus 구축 과정, 설명 및 사용법 정리
     ```
     # e.g.
     minikube start --insecure-registry="docker.wai"
-    ```
+    
+    # e.g. 여러 개 등록하는 경우
+    minikube start --insecure-registry="docker.wai, private.docker.wai"
+    ``` 
+
 4. pull
     ```
     minikube image pull docker.wai/hello-world:latest
@@ -166,10 +171,8 @@ nexus 구축 과정, 설명 및 사용법 정리
 6. 참고사항
     - 반드시 기존 클러스터 지우고 새로 시작해야 함
     - minikube addons의 registry는 minikube자체에서 사설 registry를 구축하는 용도라서, nexus 저장소 연결하는 것과는 다름
-    - docker.wai/hello-world:latest가 로컬에 저장되어있을 때, 다음을 실행하면 docker.io/hello-world:latest로 교체됨
-        ```
-        minikube image pull hello-world:latest
-        ``` 
+    - minikube image 커맨드로 push, tag 서브 커맨드를 사용하면 의도치 않게 작동한다.
+    - minikube 내 이미지 관리는 가급적 `minikube docker-env` 또는 `minikube ssh`를 통해서 minikube 내에서 실행되는 docker-cli를 통해 관리하도록 하자 
 
 ## K3s에서 저장소 사용법
 
