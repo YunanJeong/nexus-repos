@@ -107,8 +107,9 @@ nexus 구축 과정, 설명 및 사용법 정리
                 "registry-mirrors": ["http://docker.wai"]
             }
             ```
-        - 도커 재시작
+        - 도커 런타임 재시작(docker-cli, docker-desktop 등)
             ```
+            # docker-cli기준
             sudo systemctl restart docker
             ```
 1. `docker login {저장소 URL}`
