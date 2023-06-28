@@ -9,7 +9,7 @@
 
     # K3s
     curl -sfL https://get.k3s.io | sh -
-    sudo chmod -R 777 /etc/rancher/k3s/k3s.yaml  # kubectl에 sudo 없애기, 작업때만 임시로 전체 허용
+    sudo chmod -R 644 /etc/rancher/k3s/k3s.yaml
 
     # Helm
     curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
