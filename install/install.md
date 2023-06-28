@@ -1,12 +1,8 @@
 # 설치 및 설정 방법
 0. 목표
-- Helm Chart와 K3s로 nexus를 배포하고, 도커 레지스트리 프록시를 구성한다
-
-1. Helm 및 K3s 설치
-    ```
-    # Helm - K3s 연결
-    export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-
+- Helm Chart와 K3s로 nexus를 배포하고, 개별 레포지토리를 구성한다
+- 도커 레지스트리에 초점을 맞춰 작성
+- Pypi 등 다른 레포지토리는 더 쉽거나 비슷한 과정을 거치므로 별도 검색 활용
     # K3s
     curl -sfL https://get.k3s.io | sh -
     sudo chmod -R 644 /etc/rancher/k3s/k3s.yaml
