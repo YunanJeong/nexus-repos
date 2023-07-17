@@ -83,6 +83,7 @@
 ## K3s에서 저장소 사용법
 
 - [K3s에서 private registry 사용법(공식)](https://docs.k3s.io/installation/private-registry)
+- 단, K3s의 컨테이너 런타임으로 docker사용시, docker에 대한 private registry 설정만 하면 된다. 별도 K3s 설정은 필요없다.
 
 0. `/ete/rancher/k3s/registries.yaml` 파일 추가
     ```
