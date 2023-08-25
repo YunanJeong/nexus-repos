@@ -1,30 +1,29 @@
 # nexus-repos
+
 nexus 구축 과정, 설명 및 사용법 정리
 
-# 설치 및 설정 방법(Helm, K3s로 nexus 배포 후 개별 세부 설정)
+## 설치 및 설정 방법(Helm, K3s로 nexus 배포 후 개별 세부 설정)
+
 - [설치](https://github.com/YunanJeong/nexus-repos/blob/main/install/install.md)
 
-# 레포지토리 활용방법
+## 사전 준비(공통사항)
 
-## 사전준비(공통)
-- 각 저장소는 IP가 아닌, URL로 접근해야 함
-    - 다음과 같이 hosts 파일에 추가
-        ```
-        X.X.X.X nexus.wai
-        X.X.X.X docker.wai
-        X.X.X.X private.docker.wai
-        ```
-    - 리눅스의 경우: `/etc/hosts`
-    - 윈도우의 경우: `C:\Windows\System32\drivers\etc\hosts`
-    - WSL: 윈도우 적용시 같이 적용됨
+- 각 저장소는 URL로 접근 해야 함(IP로 접속불가)
+- 접속할 클라이언트 PC에서 다음과 같이 hosts 파일에 내용 추가
 
-- 저장소 및 계정관리 웹 페이지(`http://nexus.wai`)
-- 계정정보는 도커cli 로그인할 때 사용
+```conf
+# 리눅스: /etc/hosts
+# 윈도우: C:\Windows\System32\drivers\etc\hosts
+# 윈도우 적용시 WSL에 자동반영됨
+X.X.X.X nexus.wai
+X.X.X.X docker.wai
+X.X.X.X private.docker.wai
+```
 
-## 도커
-- [사설+프록시 도커 레지스트리](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/how-to-use-docker-wai.md)
+- 브라우저에서 <http://nexus.wai>로 접속 후, 로그인하여 패스워드를 변경
 
-## 파이썬
-- [PyPi 프록시](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/how-to-use-pypi-wai.md)
+## 레포지토리 활용방법
 
+### [사설+프록시 도커 레지스트리](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/how-to-use-docker-wai.md)
 
+### [PyPi 프록시](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/how-to-use-pypi-wai.md)
