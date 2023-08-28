@@ -44,7 +44,7 @@ docker push private.docker.wai/hello-world:pushtest
 ### docker 참고
 
 - Push는 private.docker.wai, Pull은 docker.wai를 사용하면 됨
-- Anonymous Pull 허용
+- Nexus에서 Anonymous Pull 허용 설정
   - Pull은 로그인 없이 가능
   - EC2 보안그룹 등 네트워크 보안환경설정이 있을 때만 추천
 
