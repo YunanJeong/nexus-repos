@@ -35,16 +35,18 @@ docker pull docker.wai/hello-world:latest
 docker login private.docker.wai
 
 # e.g. 대상 저장소에 맞게 이미지 이름 변경
-docker tag hello-world private.docker.wai/hello-world
+docker tag docker.wai/hello-world:latest private.docker.wai/hello-world:pushtest
 
 # e.g. private.docker.wai에 push
-docker push private.docker.wai/hello-world
+docker push private.docker.wai/hello-world:pushtest
 ```
 
 ### docker 참고
 
 - Push는 private.docker.wai, Pull은 docker.wai를 사용하면 됨
-- Pull은 로그인 없이 가능 (Anonymous Pull 허용)
+- Anonymous Pull 허용
+  - Pull은 로그인 없이 가능
+  - EC2 보안그룹 등 네트워크 보안환경설정이 있을 때만 추천
 
 - private.docker.wai (hosted)
   - **커스텀 이미지를 Push/Pull** 가능
