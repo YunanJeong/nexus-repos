@@ -10,6 +10,7 @@
 
 - [Install K3s](https://docs.k3s.io/quick-start)
 - [Install Helm](https://helm.sh/docs/intro/install/)
+- [시스템 요구사항](https://help.sonatype.com/repomanager3/product-information/sonatype-nexus-repository-system-requirements)
 
 ## 2. Helm Chart 추가
 
@@ -41,10 +42,10 @@ helm show values sonatype/nexus-repository-manager > value_default.yaml
   - docker registry 접근을 위한 K8s ingress 설정을 하는 부분
 - ingress 하위항목
   - nexus 서버 접근을 위한 K8s ingress 설정을 하는 부분
-- [시스템 요구사항](https://help.sonatype.com/repomanager3/product-information/sonatype-nexus-repository-system-requirements)
+- [시스템 요구사항](https://help.sonatype.com/repomanager3/product-information/sonatype-nexus-repository-system-requirements)에 맞춰서 자바 힙메모리, Pod 리소스 등을 조절
   - 보통 헬름차트 기본값은 테스트실행용 최소한도로 설정됨
-  - nexus.envs에서 자바 힙사이즈 조절
-  - nexus.resources에서 컴퓨팅 리소스 조절
+  - nexus.envs에서 자바 힙사이즈
+  - nexus.resources에서 컴퓨팅 리소스
     - 단, Pod가 cpu 부족 로그를 찍으며 Pending 상태에 머무를 때는 이 제한을 해제한다.
   - persistence.stroageSize에서 k8s pv 사이즈 조절
 
@@ -98,4 +99,7 @@ X.X.X.X private.docker.wai
 - https (외부 배포시)
   - 도커 V2 (API Version 1.10 이상)의 도커 런타임들은 https 저장소만 쓰길 강제한다.
   - 인증서를 받아서 nexus에 https를 적용하는 것이 바람직하다.
-  
+- nexus의 메모리 사용량
+  - `k top nodes`, `k9s`, `호스트의 top`, `컨테이너 내부 top`` 모두 극단적으로 다르게 표기될 수 있다.
+  - nexus는 캐시메모리를 많이 사용하고, 이는 측정툴에 따라 포함되기도하고 안되기도 하기 때문이다.
+  - `메모리가 널널해보이더라도 함부로 서버 사양을 스케일다운하지말고, 공식홈페이지 사양을 참고하여 세팅`하도록 한다.

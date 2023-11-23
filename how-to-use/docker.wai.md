@@ -113,7 +113,7 @@ docker info
 
 - `/etc/rancher/k3s/registries.yaml` 파일 추가
 
-```conf
+```yaml
 # /etc/rancher/k3s/registries.yaml
 mirrors:
   docker.wai:
