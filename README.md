@@ -21,8 +21,9 @@ X.X.X.X nexus.wai
 X.X.X.X docker.wai
 X.X.X.X private.docker.wai
 ```
+
 - 브라우저에서 <http://nexus.wai>로 접속 후, 로그인하여 패스워드를 변경
 
-### [사설+프록시 도커 레지스트리](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/how-to-use-docker-wai.md)
+### [사설+프록시 도커 레지스트리](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/docker.wai.md)
 
-### [PyPi 프록시](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/how-to-use-pypi-wai.md)
+### [PyPi 프록시](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/pypi.wai.md)
