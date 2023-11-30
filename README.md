@@ -27,3 +27,5 @@ X.X.X.X private.docker.wai
 ### [사설+프록시 도커 레지스트리](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/docker.wai.md)
 
 ### [PyPi 프록시](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/pypi.wai.md)
+
+### [raw 저장소](https://github.com/YunanJeong/nexus-repos/blob/main/how-to-use/file.wai.md)
