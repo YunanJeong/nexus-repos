@@ -19,10 +19,10 @@ nexus:
     registries:
       - host: docker.wai
         port: 5000
-        secretName: nexus-tls # registry-secret
+        secretName: registry-secret  # nexus-tls
       - host: private.docker.wai
         port: 5001
-        secretName: nexus-tls # registry-secret
+        secretName: registry-secret  # nexus-tls
   env:
     # minimum recommended memory settings for a small, person instance from
     # https://help.sonatype.com/repomanager3/product-information/system-requirements
@@ -122,12 +122,12 @@ ingress:
     #nginx.ingress.kubernetes.io/proxy-body-size: "0"
   hostPath: /
   hostRepo: nexus.wai
-  tls:
-    - secretName: nexus-tls
-      hosts:
-        - nexus.wai
-        - docker.wai
-        - private.docker.wai
+  # tls:
+  #   - secretName: nexus-tls
+  #     hosts:
+  #       - nexus.wai
+  #       - docker.wai
+  #       - private.docker.wai
   # tls:
   #   - secretName: nexus-local-tls
   #     hosts:
