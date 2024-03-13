@@ -126,6 +126,8 @@ ingress:
     - secretName: nexus-tls
       hosts:
         - nexus.wai
+        - docker.wai
+        - private.docker.wai
   # tls:
   #   - secretName: nexus-local-tls
   #     hosts:
