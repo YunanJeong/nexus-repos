@@ -122,6 +122,10 @@ ingress:
     #nginx.ingress.kubernetes.io/proxy-body-size: "0"
   hostPath: /
   hostRepo: nexus.wai
+  tls:
+    - secretName: nexus-tls
+      hosts:
+        - nexus.wai
   # tls:
   #   - secretName: nexus-local-tls
   #     hosts:
