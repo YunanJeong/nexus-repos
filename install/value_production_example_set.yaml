@@ -128,12 +128,15 @@ ingress:
   #       - repo.demo
 
 
+# Nexus service 설정 
+# Docker는 개별 service가 생성되지만 Nexus service와 공통설정을 갖는다.
+# 단, Service Port는 각각의 저장소 Port로 다르게 적용된다.
 service:
   name: nexus3
   enabled: true
   labels: {}
   annotations: {}
-  type: ClusterIP
+  type: LoadBalancer  # LB 지정시, nexus 내 각각 세부 저장소의 Service Port가 외부노출 Port로도 개방된다.
 
 
 route:
