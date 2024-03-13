@@ -19,10 +19,10 @@ nexus:
     registries:
       - host: docker.wai
         port: 5000
-        secretName: registry-secret
+        secretName: nexus-tls # registry-secret
       - host: private.docker.wai
         port: 5001
-        secretName: registry-secret
+        secretName: nexus-tls # registry-secret
   env:
     # minimum recommended memory settings for a small, person instance from
     # https://help.sonatype.com/repomanager3/product-information/system-requirements
