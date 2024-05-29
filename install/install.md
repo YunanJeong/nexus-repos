@@ -103,3 +103,10 @@ X.X.X.X private.docker.wai
   - `k top nodes`, `k9s`, `호스트의 top`, `컨테이너 내부 top`` 모두 극단적으로 다르게 표기될 수 있다.
   - nexus는 캐시메모리를 많이 사용하고, 이는 측정툴에 따라 포함되기도하고 안되기도 하기 때문이다.
   - `메모리가 널널해보이더라도 함부로 서버 사양을 스케일다운하지말고, 공식홈페이지 사양을 참고하여 세팅`하도록 한다.
+- [도커 접근 주소는 subpath가 없는 것이 표준](https://github.com/GoogleContainerTools/jib/issues/2466#issuecomment-630978206)
+  - e.g. example.com (O)
+  - e.g. exmaple.com/subpath (X)
+  - 첫번째 슬래시까지가 registry 주소이고, 이후로는 슬래시가 몇개 나오든 repository의 계층적 주소로 사용된다.
+  - 이런 관점에서 충돌을 피하기 위해, nexus에서는 docker 활용시에만 nexus의 port 대신 별도 port를 추가할당하는 과정이 요구된다.
+  - 충돌이 발생해도 docker client에서 명시적으로 registry 주소범위를 지정가능, 하지만 가급적 ingress 배포시 subpath가 없도록 하는것이 바람직
+  
