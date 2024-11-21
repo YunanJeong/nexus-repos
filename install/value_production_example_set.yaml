@@ -6,7 +6,7 @@ deploymentStrategy: Recreate
 image:
   # Sonatype Official Public Image
   repository: sonatype/nexus3
-  tag: 3.69.0-java11  # 3.74.0  # 3.53.1 # 3.7부터 Postgres로 마이그레이션 필요
+  tag: 3.70.3-java11-alpine  # 3.71부터 Postgres로 마이그레이션 필요
   pullPolicy: IfNotPresent
 imagePullSecrets:
 # for image registries that require login, specify the name of the existing
