@@ -6,7 +6,7 @@ deploymentStrategy: Recreate
 image:
   # Sonatype Official Public Image
   repository: sonatype/nexus3
-  tag: 3.53.1
+  tag: 3.69.0-java11  # 3.74.0  # 3.53.1 # 3.7부터 Postgres로 마이그레이션 필요
   pullPolicy: IfNotPresent
 imagePullSecrets:
 # for image registries that require login, specify the name of the existing
@@ -38,7 +38,7 @@ nexus:
         -Xms4G -Xmx4G
         -XX:MaxDirectMemorySize=4014M
         -XX:+UnlockExperimentalVMOptions
-        -XX:+UseCGroupMemoryLimitForHeap
+        -XX:+UseContainerSupport
         -Djava.util.prefs.userRoot=/nexus-data/javaprefs
     - name: NEXUS_SECURITY_RANDOMPASSWORD
       value: "true"
