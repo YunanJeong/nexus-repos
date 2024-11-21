@@ -35,15 +35,7 @@ nexus:
         # K8s의 경우 resources.limits에 지정한 코어 수가 인식해야할 호스트 프로세스 개수라고 볼 수 있다.
           # e.g.) 여기서 4개로 지정해도, 3코어 limit이 걸려있으면 인식만 4개로 하는 것 같음. 성능은 resources.limit에 따름
         # Pod 내부의 코어 개수 확인: $ grep -c processor /proc/cpuinfo
-      value: |-
-        -Xms2703M -Xmx2703M
-        -XX:MaxDirectMemorySize=2703M
-        -XX:+UnlockExperimentalVMOptions
-        -XX:+UseContainerSupport
-        -Djava.util.prefs.userRoot=/nexus-data/javaprefs
-        -XX:+UnlockExperimentalVMOptions
-        -XX:+UseContainerSupport
-        -Djava.util.prefs.userRoot=/nexus-data/javaprefs
+      value: -Xms2703M -Xmx2703M -XX:MaxDirectMemorySize=2703M -XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport -Djava.util.prefs.userRoot=/nexus-data/javaprefs
     - name: NEXUS_SECURITY_RANDOMPASSWORD
       value: "true"
   properties:
