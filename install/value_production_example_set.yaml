@@ -26,8 +26,9 @@ nexus:
   env:
     # minimum recommended memory settings for a small, person instance from
     # https://help.sonatype.com/repomanager3/product-information/system-requirements
+    # https://help.sonatype.com/en/estimating-heap-sizes.html#general-memory-guidelines
+    # https://help.sonatype.com/en/nexus-repository-memory-overview.html#configurable-memory-types
     - name: INSTALL4J_ADD_VM_PARAMS
-      # 램 12기준으로 권장 설정
       # -XX:ActiveProcessorCount=4
         # Pod 내부의 JavaVM이 인식하는 프로세스 개수를 명시적으로 지정한다
         # 가끔 호스트의 프로세스 개수를 인식하지 못하는 경우가 있을 때 아래 value에 추가해서 사용해주면된다.
@@ -35,8 +36,11 @@ nexus:
           # e.g.) 여기서 4개로 지정해도, 3코어 limit이 걸려있으면 인식만 4개로 하는 것 같음. 성능은 resources.limit에 따름
         # Pod 내부의 코어 개수 확인: $ grep -c processor /proc/cpuinfo
       value: |-
-        -Xms4G -Xmx4G
-        -XX:MaxDirectMemorySize=4014M
+        -Xms2703M -Xmx2703M
+        -XX:MaxDirectMemorySize=2703M
+        -XX:+UnlockExperimentalVMOptions
+        -XX:+UseContainerSupport
+        -Djava.util.prefs.userRoot=/nexus-data/javaprefs
         -XX:+UnlockExperimentalVMOptions
         -XX:+UseContainerSupport
         -Djava.util.prefs.userRoot=/nexus-data/javaprefs
