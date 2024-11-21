@@ -52,7 +52,7 @@ helm show values sonatype/nexus-repository-manager > value_default.yaml
 ## 5. nexus 실행
 
 ```sh
-# 실행  # --version=54.1.0
+# 실행  # --version=64.2.0
 helm install -f value_custom.yaml my-nexus sonatype/nexus-repository-manager
 
 # 배포 확인
