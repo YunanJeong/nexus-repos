@@ -6,7 +6,7 @@ deploymentStrategy: Recreate
 image:
   # Sonatype Official Public Image
   repository: sonatype/nexus3
-  tag: 3.70.3-java11-alpine  # 3.71부터 Postgres로 마이그레이션 필요
+  tag: 3.70.3-java11-alpine  # 3.71부터 DB 마이그레이션 필요(OrientDB=>H2) Postgresql은 Pro 버전만 지원
   pullPolicy: IfNotPresent
 imagePullSecrets:
 # for image registries that require login, specify the name of the existing
