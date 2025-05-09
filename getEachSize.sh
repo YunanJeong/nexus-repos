@@ -56,4 +56,6 @@ done
 # sort -k: (key) 특정 컬럼 기준으로 정렬
 # sort -n: (numeric)숫자 크기 기준으로 정렬
 # sort -r: (reverse)역순
-# e.g.) sort -k3 -n -r mylist.txt : 세번 째 컬럼 기준으로, 문자가 아닌 숫자크기 기준으로, 내림차순으로 정렬
+# e.g.) sort -k3 -n -r mylist.txt => 세번 째 컬럼 기준으로, 문자가 아닌 숫자크기 기준으로, 내림차순으로 정렬
+# e.g.) column -t -s $'\t' => 특정 구분자에 대하여 표 형태로 각 잡아서 출력
+# cat mylist.txt | sort -k3 -n -r | column -t -s $'\t'
