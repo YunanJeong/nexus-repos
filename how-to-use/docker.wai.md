@@ -5,10 +5,14 @@
 ### http 저장소 보안 허용
 
 - `/etc/docker/daemon.json`에 보안 예외 등록(파일 없으면 생성)
+- docker 29버전부터 containerd storage driver가 default로 도입됨에 따라 insecure-registries 접근이 불가한 현상이 있음
+  - containerd 레이어에서도 별도 https/http 설정이 있어 충돌 및 호환성 이슈가 있는 것으로 보임
+  -  `"storage-driver":"overlay2",`를 추가 등록하여 legacy mode를 쓰면 접근가능
 - Indent에 매우 민감하므로 복사해서 이용 추천
 
 ```conf
 {
+  "storage-driver":"overlay2",
   "insecure-registries": ["private.docker.wai", "docker.wai"],
   "registry-mirrors": ["http://private.docker.wai","http://docker.wai"]
 }
